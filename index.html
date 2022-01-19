@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Rock Salt"
+      rel="stylesheet"
+    />
+    <title>Mathbirthdays</title>
+  </head>
+  <body
+    style="background-color: #e07a5f; font-family: 'Rock Salt'; font-size: 22px"
+  >
+    <!--        SCRIPT                                -->
+    <script>
+      function mathbirthdaycalc(){
+        var dayc = document.getElementById("day").value;
+        var monthc = document.getElementById("month").value-1;
+        var yearc = document.getElementById("year").value;
+        var res = document.getElementById("result");
+        var flg = false;
+        var i = 1;
+        var mathbirthday = new Date(yearc,monthc,dayc);
+        var mbirthd;
+        var todaydate = new Date();
+        while(!flg){
+          mathbirthday.setDate(mathbirthday.getDate()+10**i);
+          if(mathbirthday>todaydate){
+            flg=true;
+            mathbirthday.setMinutes(mathbirthday.getMinutes() - mathbirthday.getTimezoneOffset());
+            console.log(mathbirthday.toISOString().slice(0,10));
+            res.style.display = "block";
+            document.getElementById("resp").innerText = "Your next mathbirthday is your "+10**i+" day old birthday on :";
+            document.getElementById("respdate").innerText = mathbirthday.toISOString().slice(0,10);
+          }else{
+            i++;
+          }
+        }
+        console.log(mathbirthday);
+      }
+    </script>
+    <!--        SCRIPT                                -->
+
+    <header class="tc pv4" style="background: #bcd979 center">
+      <h1
+        class="mt2 mb0"
+        style="font-weight: 200; font-size: 4rem; color: #0090c1"
+      >
+        Mathbirthdays
+      </h1>
+    </header>
+
+    <article class="mw7 mw6-1 center pt4">
+      <div style="text-align: center;">
+        <h2 style="color: #046e8f;">Enter your birthday</h2>
+      </div>
+      
+      <div class="aspect-ratio aspect-ratio--6x4 mb4">
+        <div
+          class="aspect-ratio--object cover"
+          style="background: #0090c1 center; border-radius: 25px"
+        >
+          <div class="dt dt--fixed" style="height: 60%">
+            
+            <div class="dtc tc pv4" style="padding-top: 4em">
+              <h2 style="color: #bcd979">Day</h2>
+              <input
+                class="w4 br3 tc f2 grow"
+                type="text"
+                id="day"
+                style="
+                  margin-top: 1em;
+                  height: 30%;
+                  background-color: #046e8f;
+                  color: #bcd979;
+                  border-color: #046e8f;
+                "
+              />
+            </div>
+            <div class="dtc tc pv4" style="padding-top: 4em">
+              <h2 style="color: #bcd979">Month</h2>
+              <input
+                class="w4 br3 tc f2 grow"
+                type="text"
+                id="month"
+                style="
+                  margin-top: 1em;
+                  height: 30%;
+                  background-color: #046e8f;
+                  color: #bcd979;
+                  border-color: #046e8f;
+                "
+              />
+            </div>
+            <div class="dtc tc pv4" style="padding-top: 4em">
+              <h2 style="color: #bcd979">Year</h2>
+              <input
+                class="w4 br3 tc f2 grow"
+                type="text"
+                id="year"
+                style="
+                  margin-top: 1em;
+                  height: 30%;
+                  background-color: #046e8f;
+                  color: #bcd979;
+                  border-color: #046e8f;
+                "
+              />
+            </div>
+          </div>
+          <div
+            class="flex items-center justify-center pt4 pt0-m"
+            style="width: 100%"
+          >
+            <a
+              class="f2-ns grow no-underline br-pill ph3 pv2 mb2 dib"
+              style="background-color: #bcd979; color: #38aecc"
+              href="#0"
+              onclick="mathbirthdaycalc()"
+              >Confirm</a
+            >
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="mw7 mw6-1 center pt4">
+      <div class="aspect-ratio aspect-ratio--6x4 mb4">
+        <div
+          class="aspect-ratio--object cover"
+          style="background: #bcd979 center; border-radius: 50%"
+        >
+          <main id="result" class="pa3 pa5-ns" style="text-align: center; display: none;">
+            <p
+              id="resp"
+              class="lh-copy measure pt3 pt0-m"
+              style="font-weight: 200; font-size: 2rem; color: #0090c1"
+            >
+              Your next mathbirthday is your 10-day-old birthday on :
+            </p>
+            <h3
+            id="respdate"
+              class="mt2 mb0 f1 pt5 pt0-m"
+              style="font-weight: 200; color: #0090c1"
+            >
+              29-01-2022
+            </h3>
+          </main>
+        </div>
+      </div>
+    </article>
+    <a class="f4 fw6 db black link hover-dark-blue" href="#0">dark-blue on hover </a>
+  </body>
+</html>
